@@ -1,6 +1,8 @@
 # @title read guitar
 
-from backing import *
+# from backing import *
+from backing import gaticode  # 必要なものだけをインポート
+
 import random
 
 # リズムの決定
@@ -50,8 +52,8 @@ def generate_melody(chords, note_count=8):
 
 # メロディを生成
 melody = generate_melody(chord_progression)
-print("コード進行:", chord_progression)
-print("スケール:", melody)
+# print("コード進行:", chord_progression)
+# print("スケール:", melody)
 
 def extract_melody_by_count(rhythm, melody):
   note_count = len(rhythm)  # read_rhythm の数字の数を取得

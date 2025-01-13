@@ -1,4 +1,4 @@
-from backing import *
+from backing import quarter, make_rhythm, gaticode, rhythm
 
 import random
 
@@ -29,11 +29,6 @@ def generate_bassline(gaticode, rhythm):
 # ベースラインを生成
 make_rhythm()  # リズムを生成
 bassline = generate_bassline(gaticode, rhythm)
-
-# 結果を表示
-print("\n生成されたベースライン:")
-for note, note_rhythm in bassline:
-  print(f"音: {note}, リズム: {note_rhythm:.2f}秒")
 
 # 結果を表示
 print("\n生成されたベースライン:")

@@ -1,12 +1,9 @@
-# @title コード進行の設定
 import random
-from chordnorts import *
 
 gaticode = []  # 空のリストを初期化
 
-
 bpm = [random.randint(50, 250)]
-print(bpm)
+print("BPM:", bpm)
 rhythm = []
 rhythm_set = ["四分音符", "半音符", "八分音符", "全音符", "16分音符"]
 beat = []
@@ -30,6 +27,7 @@ scale = {
     "C": 0, "C#": 1, "D": 2, "D#": 3, "E": 4, "F": 5, "F#": 6, "G": 7, "G#": 8, "A": 9, "A#": 10, "B": 11
 }
 reverse_scale = {v: k for k, v in scale.items()}
+
 
 def get_chord_notes(root, chord_type):
   """
@@ -60,12 +58,13 @@ def get_chord_notes(root, chord_type):
   chord_notes = [(root_value + interval) % 12 for interval in chord_intervals]
   return [reverse_scale[note] for note in chord_notes]
 
+
 # コードをランダムに生成
-code_list = [code, sharpcode]
-gaticode = []
 def make_code():
+  global gaticode
+  gaticode = []
   for i in range(4):
-    code0 = random.choice(code_list)
+    code0 = random.choice([code, sharpcode])
     code1 = random.choice(code0)
 
     if code0 == code:
@@ -75,66 +74,32 @@ def make_code():
       type02 = random.choice(type2)
       gaticode.append((code1, type02))
 
-  print("コード進行:", gaticode)
 
-# コード構成音を表示する
+def make_rhythm():
+  global beat, rhythm
+  beat = [random.choice(rhythm_set) for _ in range(4)]
+  rhythm = []
+  for b in beat:
+    if b == "四分音符":
+      rhythm.append((quarter))
+    elif b == "半音符":
+      rhythm.append((half))
+    elif b == "八分音符":
+      rhythm.append((eighth))
+    elif b == "全音符":
+      rhythm.append((full))
+    elif b == "16分音符":
+      rhythm.append((sixteenth))
+
+
+# 実行部分
 make_code()
+print("コード進行:", gaticode)
 for chord in gaticode:
   root, chord_type = chord
   notes = get_chord_notes(root, chord_type)
   print(f"{root}{chord_type}: {notes}")
 
-
-# @title bpmの設定
-
-
-def make_rhythm():
-  for i in range(4):
-    beat.append(random.choice(rhythm_set))
-
-  if beat[0] == "四分音符":
-    rhythm.append(quarter)
-  elif beat[0] == "半音符":
-    rhythm.append(half)
-  elif beat[0] == "八分音符":
-    rhythm.append(eighth)
-  elif beat[0] == "全音符":
-    rhythm.append(full)
-  elif beat[0] == "16分音符":
-    rhythm.append(sixteenth)
-
-  if beat[1] == "四分音符":
-    rhythm.append(quarter)
-  elif beat[1] == "半音符":
-    rhythm.append(half)
-  elif beat[1] == "八分音符":
-    rhythm.append(eighth)
-  elif beat[1] == "全音符":
-    rhythm.append(full)
-  elif beat[1] == "16分音符":
-    rhythm.append(sixteenth)
-
-  if beat[2] == "四分音符":
-    rhythm.append(quarter)
-  elif beat[2] == "半音符":
-    rhythm.append(half)
-  elif beat[2] == "八分音符":
-    rhythm.append(eighth)
-  elif beat[2] == "全音符":
-    rhythm.append(full)
-  elif beat[2] == "16分音符":
-    rhythm.append(sixteenth)
-
-  if beat[3] == "四分音符":
-    rhythm.append(quarter)
-  elif beat[3] == "半音符":
-    rhythm.append(half)
-  elif beat[3] == "八分音符":
-    rhythm.append(eighth)
-  elif beat[3] == "全音符":
-    rhythm.append(full)
-  elif beat[3] == "16分音符":
-    rhythm.append(sixteenth)
-
-  print(beat)
-  print(rhythm)
+make_rhythm()
+print("リズム:", beat)
+print("リズム(秒):", rhythm)
