@@ -24,4 +24,4 @@ bassline = generate_bassline()
 # 出力
 print("コード進行:", gaticode)
 print("ベースライン:", bassline)
-print(f"各音の長さ: {quarter:.2f} 秒 (BPM: {bpm[0]})")
+print(f"各音の長さ: 四分音符/{quarter:.2f} 秒 (BPM: {bpm[0]})")
