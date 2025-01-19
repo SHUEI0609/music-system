@@ -1,7 +1,6 @@
 # @title read guitar
 
-# from backing import *
-from backing import gaticode  # 必要なものだけをインポート
+from base import *
 
 import random
 
